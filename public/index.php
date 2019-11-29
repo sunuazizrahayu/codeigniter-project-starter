@@ -307,17 +307,6 @@ switch (ENVIRONMENT)
 
 /*
  * --------------------------------------------------------------------
- * LOAD .ENV CONFIGURATION
- * --------------------------------------------------------------------
- */
-if (file_exists(APPPATH.'../.env')) {
-	require_once APPPATH.'../vendor/autoload.php';
-	$dotenv = Dotenv\Dotenv::create(APPPATH.'..');
-	$dotenv->load();
-}
-
-/*
- * --------------------------------------------------------------------
  * LOAD THE BOOTSTRAP FILE
  * --------------------------------------------------------------------
  *

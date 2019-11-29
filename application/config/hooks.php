@@ -17,10 +17,3 @@ $hook['pre_system'][] = array(
 	'filename' => 'env.php',
 	'filepath' => 'hooks'
 );
-
-//set baseurl with phpdotenv
-$hook['post_controller_constructor'][] = array(
-	'function' => 'set_baseurl',
-	'filename' => 'env_baseurl.php',
-	'filepath' => 'hooks'
-);
