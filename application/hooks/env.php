@@ -1,9 +1,15 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-function init_env()
+function env_v3()
 {
 	$dotenv = Dotenv\Dotenv::create(APPPATH.'..');
+	$dotenv->load();
+}
+
+function env_v4()
+{
+	$dotenv = Dotenv\Dotenv::createImmutable(APPPATH.'..');
 	$dotenv->load();
 }
 

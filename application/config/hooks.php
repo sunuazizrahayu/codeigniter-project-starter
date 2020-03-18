@@ -13,7 +13,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 //load phpdotenv
 $hook['pre_system'][] = array(
-	'function' => 'init_env',
+	'function' => 'env_v4',
 	'filename' => 'env.php',
 	'filepath' => 'hooks'
 );
