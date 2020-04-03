@@ -1,6 +1,7 @@
 {
     "require": {
         "vlucas/phpdotenv": "^4.1",
-        "jenssegers/blade": "^1.2"
+        "jenssegers/blade": "^1.2",
+        "chriskacerguis/codeigniter-restserver": "^3.1"
     }
 }
