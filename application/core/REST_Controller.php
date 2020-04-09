@@ -5,13 +5,35 @@ use chriskacerguis\RestServer\RestController;
 
 class REST_Controller extends RestController {
 
+	public $data;
+
 	public function __construct()
 	{
 		parent::__construct();
-		//Do your magic here
+
+		// retrieve request data
+		if ($_SERVER['REQUEST_METHOD'] === 'POST' && getallheaders()['Content-Type'] === 'application/json') {
+			$_POST = json_decode(file_get_contents("php://input"), true);
+		}
+
+
+		if ($_SERVER['REQUEST_METHOD'] === 'PUT') {
+			$putfp = fopen('php://input', 'r');
+			$data = fread($putfp, 1024);
+			fclose($putfp);
+
+			if (getallheaders()['Content-Type'] === 'application/json') {
+				$_POST = json_decode($data, true);
+				
+				//check form_validation is loaded
+				if (isset($this->form_validation)) {
+					$this->form_validation->set_data($this->put());
+				}
+			}
+		}
 	}
 
 }
 
-/* End of file REST_Controller.php */
+/* End of file API_Controller.php */
 /* Location: ./application/core/REST_Controller.php */
