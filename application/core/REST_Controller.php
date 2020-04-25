@@ -11,12 +11,13 @@ class REST_Controller extends RestController {
 	{
 		parent::__construct();
 
-		// retrieve request data
+		// retrieve data request POST
 		if ($_SERVER['REQUEST_METHOD'] === 'POST' && getallheaders()['Content-Type'] === 'application/json') {
 			$_POST = json_decode(file_get_contents("php://input"), true);
 		}
 
-
+		
+		// retrieve data request PUT
 		if ($_SERVER['REQUEST_METHOD'] === 'PUT') {
 			$putfp = fopen('php://input', 'r');
 			$data = fread($putfp, 1024);
@@ -35,5 +36,5 @@ class REST_Controller extends RestController {
 
 }
 
-/* End of file API_Controller.php */
+/* End of file REST_Controller.php */
 /* Location: ./application/core/REST_Controller.php */
