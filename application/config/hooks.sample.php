@@ -11,6 +11,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |	https://codeigniter.com/user_guide/general/hooks.html
 |
 */
+
 //load phpdotenv
 $hook['pre_system'][] = array(
 	'function' => 'env_v4',
