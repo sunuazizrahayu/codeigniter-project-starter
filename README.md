@@ -1,4 +1,4 @@
-# CodeIgniter Project Starter [UNDER DEVELOPMENT]
+# CodeIgniter Project Starter
 
 A Starter Pack for CodeIgniter Project.
 
@@ -14,3 +14,9 @@ A Starter Pack for CodeIgniter Project.
 ```sh
 composer update --init
 ```
+
+## Compatible
+This starter support with:
+- [CodeIgniter-HMVC-Modular-Extension](https://github.com/sunuazizrahayu/CodeIgniter-HMVC-Modular-Extension)
+- [CodeIgniter-Migration-CLI](https://github.com/sunuazizrahayu/CodeIgniter-Migration-CLI)
+- [phpdotenv-for-codeigniter](https://github.com/sunuazizrahayu/phpdotenv-for-codeigniter)
