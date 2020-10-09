@@ -22,7 +22,7 @@ COPY docker/config/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 RUN mkdir -p /var/www/html
 
 # Install Composer & dependencies
-COPY composer.json /var/www/html
+COPY composer.json composer.lock /var/www/html
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 RUN composer install --working-dir=/var/www/html --prefer-dist --no-scripts --no-dev --no-autoloader && rm -rf /root/.composer
 RUN composer dump-autoload --working-dir=/var/www/html --no-scripts --no-dev --optimize
