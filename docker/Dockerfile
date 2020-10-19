@@ -1,11 +1,10 @@
 FROM alpine:3.12
-LABEL Maintainer="Tim de Pater <code@trafex.nl>" \
-      Description="Lightweight container with Nginx 1.18 & PHP-FPM 7.3 based on Alpine Linux."
 
 # Install packages and remove default server definition
 RUN apk --no-cache add php7 php7-fpm php7-opcache php7-mysqli php7-json php7-openssl php7-curl \
     php7-zlib php7-xml php7-phar php7-intl php7-dom php7-xmlreader php7-ctype php7-session \
-    php7-mbstring php7-gd nginx supervisor curl && \
+    php7-mbstring php7-gd \
+	nginx supervisor curl && \
     rm /etc/nginx/conf.d/default.conf
 
 # Configure nginx
@@ -21,11 +20,10 @@ COPY docker/config/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 # Setup document root
 RUN mkdir -p /var/www/html
 
-# Install Composer & dependencies
-COPY composer.json composer.lock /var/www/html
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-RUN composer install --working-dir=/var/www/html --prefer-dist --no-scripts --no-dev --no-autoloader && rm -rf /root/.composer
-RUN composer dump-autoload --working-dir=/var/www/html --no-scripts --no-dev --optimize
+# Install composer & dependencies
+#RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+#COPY composer.json composer.lock  /var/www/html/
+#RUN composer install --working-dir=/var/www/html/ --prefer-dist --no-scripts --no-dev --no-autoloader && rm -rf /root/.composer
 
 # Make sure files/folders needed by the processes are accessable when they run under the nobody user
 RUN chown -R nobody.nobody /var/www/html && \
@@ -38,7 +36,7 @@ USER nobody
 
 # Add application
 WORKDIR /var/www/html
-COPY --chown=nobody . /var/www/html/
+COPY  . /var/www/html/
 
 # Expose the port nginx is reachable on
 EXPOSE 8080
