@@ -1,4 +1,14 @@
 <?php
+$path = '';
+if (php_sapi_name() !== 'cli') {
+	$path = '../';
+}
+if (!file_exists($path.'config.php')) {
+    exit("Config doesn't exist");
+}
+require_once $path.'config.php';
+
+
 /**
  * CodeIgniter
  *

@@ -25,8 +25,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 $config['base_url'] = '';
 if (php_sapi_name() !== 'cli') {
-	if (!empty($_ENV['APP_URL'])) {
-		$config['base_url'] = $_ENV['APP_URL'];
+	if ( defined('BASE_URL') && BASE_URL!="") {
+		$config['base_url'] = BASE_URL;
 	}else{
 		$http = 'http' . ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') ? 's' : '') . '://';
 		$newurl = str_replace("index.php","", $_SERVER['SCRIPT_NAME']);
@@ -44,7 +44,7 @@ if (php_sapi_name() !== 'cli') {
 | variable so that it is blank.
 |
 */
-$config['index_page'] = '';
+$config['index_page'] = 'index.php';
 
 /*
 |--------------------------------------------------------------------------
@@ -109,7 +109,7 @@ $config['charset'] = 'UTF-8';
 | setting this variable to TRUE (boolean).  See the user guide for details.
 |
 */
-$config['enable_hooks'] = TRUE;
+$config['enable_hooks'] = FALSE;
 
 /*
 |--------------------------------------------------------------------------
@@ -145,7 +145,7 @@ $config['subclass_prefix'] = 'MY_';
 | Note: This will NOT disable or override the CodeIgniter-specific
 |	autoloading (application/config/autoload.php)
 */
-$config['composer_autoload'] = APPPATH.'../vendor/autoload.php';
+$config['composer_autoload'] = FALSE;
 
 /*
 |--------------------------------------------------------------------------
@@ -389,7 +389,7 @@ $config['encryption_key'] = '';
 $config['sess_driver'] = 'files';
 $config['sess_cookie_name'] = 'ci_session';
 $config['sess_expiration'] = 7200;
-$config['sess_save_path'] = NULL;
+$config['sess_save_path'] = sys_get_temp_dir();
 $config['sess_match_ip'] = FALSE;
 $config['sess_time_to_update'] = 300;
 $config['sess_regenerate_destroy'] = FALSE;
